@@ -26,6 +26,7 @@
     // Initiate location manager
     _locationAuthorizationManager = [[CLLocationManager alloc] init];
     _locationAuthorizationManager.delegate = self;
+    _locationAuthorizationManager.distanceFilter = 20.0;
     
     // Try too enable location updates
     [self enableMyLocation];
@@ -37,7 +38,8 @@
 }
 
 
-#pragma mark - Location authorization helpers
+
+#pragma mark - Location authorization
 - (void)enableMyLocation
 {
     CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
@@ -53,7 +55,6 @@
     } else if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {
         // User location can be used - obtain user location
         [self.mapView setMyLocationEnabled:YES];
-        [_locationAuthorizationManager startUpdatingLocation];
     }
 }
 
@@ -62,11 +63,18 @@
 {
     if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {
         [self performSelectorOnMainThread:@selector(enableMyLocation) withObject:nil waitUntilDone:[NSThread isMainThread]];
+        [_locationAuthorizationManager startUpdatingLocation];
     }
     
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+
+    NSLog(@"location update");
+    
+    // Stop updating location (save power resources)
+    [manager stopUpdatingLocation];
+    
     // User location available - retrieve coordinates
     CLLocation *newLocation = [locations lastObject];
     CLLocationCoordinate2D coordinates = [newLocation coordinate];
@@ -77,7 +85,6 @@
                                                                  zoom:12];
     self.mapView.camera = camera;
     
-    // Stop updating location (save power resources)
-    [manager stopUpdatingLocation];
 }
+
 @end
