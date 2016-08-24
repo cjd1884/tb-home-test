@@ -8,13 +8,12 @@
 
 #import "ViewController.h"
 
-@import GoogleMaps;
-
 @interface ViewController () {
     CLLocationManager *_locationAuthorizationManager;
 }
 
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
+@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 
 @end
 
@@ -22,6 +21,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Set Google Maps view delegate
+    self.mapView.delegate = self;
     
     // Initiate location manager
     _locationAuthorizationManager = [[CLLocationManager alloc] init];
@@ -37,7 +39,44 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Geocoding
+-(void)reverseGeocodeWithCoordinates:(CLLocationCoordinate2D)coordinates {
+    [[GMSGeocoder geocoder] reverseGeocodeCoordinate:coordinates completionHandler:^(GMSReverseGeocodeResponse* response, NSError* error) {
+        
+        // Get reverse geocoded address
+        GMSAddress* addressObj = (GMSAddress*)[response firstResult];
+        
+        // Sanitize address string
+        [self.addressLabel setText:[self sanitizeAddressWithThoroughfare:addressObj.thoroughfare andLocality:addressObj.locality]];
+    }];
+}
 
+-(NSString*)sanitizeAddressWithThoroughfare:(NSString*)thoroughfare andLocality:(NSString*)locality {
+    
+    if (thoroughfare != nil && locality != nil) {
+        return [NSString stringWithFormat:@"%@, %@", thoroughfare, locality];
+    }
+    
+    if (thoroughfare == nil && locality != nil) {
+        return locality;
+    }
+    
+    if (thoroughfare != nil && locality == nil) {
+        return thoroughfare;
+    }
+    
+    return NSLocalizedString(@"Address unavailable", nil);
+}
+
+#pragma mark - Google Maps delegate
+-(void)mapView:(GMSMapView *)mapView idleAtCameraPosition:(GMSCameraPosition *)position {
+    // Get coordinates
+    double latitude = mapView.camera.target.latitude;
+    double longitude = mapView.camera.target.longitude;
+    
+    // Reverse geocode
+    [self reverseGeocodeWithCoordinates:CLLocationCoordinate2DMake(latitude, longitude)];
+}
 
 #pragma mark - Location authorization
 - (void)enableMyLocation
@@ -69,8 +108,6 @@
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
-
-    NSLog(@"location update");
     
     // Stop updating location (save power resources)
     [manager stopUpdatingLocation];
@@ -84,6 +121,9 @@
                                                             longitude:coordinates.longitude
                                                                  zoom:12];
     self.mapView.camera = camera;
+    
+    // Reverse geocode user location
+    [self reverseGeocodeWithCoordinates:coordinates];
     
 }
 
