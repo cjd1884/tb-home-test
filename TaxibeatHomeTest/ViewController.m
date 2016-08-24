@@ -8,7 +8,13 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
+@import GoogleMaps;
+
+@interface ViewController () {
+    CLLocationManager *_locationAuthorizationManager;
+}
+
+@property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 
 @end
 
@@ -16,7 +22,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    // Initiate location manager
+    _locationAuthorizationManager = [[CLLocationManager alloc] init];
+    _locationAuthorizationManager.delegate = self;
+    
+    // Try too enable location updates
+    [self enableMyLocation];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,4 +36,48 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+#pragma mark - Location authorization helpers
+- (void)enableMyLocation
+{
+    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+    
+    if (status == kCLAuthorizationStatusNotDetermined) {
+        // Request user authorization
+        [_locationAuthorizationManager requestWhenInUseAuthorization];
+    } else if (status == kCLAuthorizationStatusDenied || status == kCLAuthorizationStatusRestricted) {
+        // No authorization provided - free up resources
+        _locationAuthorizationManager = nil;
+        _locationAuthorizationManager.delegate = nil;
+        return;
+    } else if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {
+        // User location can be used - obtain user location
+        [self.mapView setMyLocationEnabled:YES];
+        [_locationAuthorizationManager startUpdatingLocation];
+    }
+}
+
+#pragma mark - Location manager delegate
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {
+        [self performSelectorOnMainThread:@selector(enableMyLocation) withObject:nil waitUntilDone:[NSThread isMainThread]];
+    }
+    
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    // User location available - retrieve coordinates
+    CLLocation *newLocation = [locations lastObject];
+    CLLocationCoordinate2D coordinates = [newLocation coordinate];
+    
+    // Set the Google Maps camera
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:coordinates.latitude
+                                                            longitude:coordinates.longitude
+                                                                 zoom:12];
+    self.mapView.camera = camera;
+    
+    // Stop updating location (save power resources)
+    [manager stopUpdatingLocation];
+}
 @end

@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 
+@import GoogleMaps;
+
 @interface AppDelegate ()
 
 @end
@@ -16,7 +18,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    [GMSServices provideAPIKey:@"AIzaSyDDLKdsZv0KBEthAWLz0GBg_MOErrLBHLQ"];
+    
     return YES;
 }
 
