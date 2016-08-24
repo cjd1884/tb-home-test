@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB96523C088D028F9E2BCC3F /* libPods-TaxibeatHomeTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FFF46C21FBC3E28A5A992E4B /* libPods-TaxibeatHomeTest.a */; };
 		E710061B1D6D7A1A00BFCC18 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E710061A1D6D7A1A00BFCC18 /* main.m */; };
 		E710061E1D6D7A1A00BFCC18 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E710061D1D6D7A1A00BFCC18 /* AppDelegate.m */; };
 		E71006211D6D7A1A00BFCC18 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71006201D6D7A1A00BFCC18 /* ViewController.m */; };
@@ -27,6 +28,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		83DCB9D5E3E4BF7901623FFF /* Pods-TaxibeatHomeTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxibeatHomeTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-TaxibeatHomeTest/Pods-TaxibeatHomeTest.release.xcconfig"; sourceTree = "<group>"; };
+		9B5C9AF570D1FB09DC36B170 /* Pods-TaxibeatHomeTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaxibeatHomeTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaxibeatHomeTest/Pods-TaxibeatHomeTest.debug.xcconfig"; sourceTree = "<group>"; };
 		E71006161D6D7A1A00BFCC18 /* TaxibeatHomeTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaxibeatHomeTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E710061A1D6D7A1A00BFCC18 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E710061C1D6D7A1A00BFCC18 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -40,6 +43,7 @@
 		E710062F1D6D7A1A00BFCC18 /* TaxibeatHomeTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaxibeatHomeTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E71006331D6D7A1A00BFCC18 /* TaxibeatHomeTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaxibeatHomeTestTests.m; sourceTree = "<group>"; };
 		E71006351D6D7A1A00BFCC18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FFF46C21FBC3E28A5A992E4B /* libPods-TaxibeatHomeTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TaxibeatHomeTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB96523C088D028F9E2BCC3F /* libPods-TaxibeatHomeTest.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,12 +65,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		681DE3C77F06CA395E83679F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FFF46C21FBC3E28A5A992E4B /* libPods-TaxibeatHomeTest.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AF1E6DFE18FAFA641D03F688 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9B5C9AF570D1FB09DC36B170 /* Pods-TaxibeatHomeTest.debug.xcconfig */,
+				83DCB9D5E3E4BF7901623FFF /* Pods-TaxibeatHomeTest.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E710060D1D6D7A1A00BFCC18 = {
 			isa = PBXGroup;
 			children = (
 				E71006181D6D7A1A00BFCC18 /* TaxibeatHomeTest */,
 				E71006321D6D7A1A00BFCC18 /* TaxibeatHomeTestTests */,
 				E71006171D6D7A1A00BFCC18 /* Products */,
+				AF1E6DFE18FAFA641D03F688 /* Pods */,
+				681DE3C77F06CA395E83679F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,9 +142,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E71006381D6D7A1A00BFCC18 /* Build configuration list for PBXNativeTarget "TaxibeatHomeTest" */;
 			buildPhases = (
+				F13A98F519997D663916C0E5 /* 📦 Check Pods Manifest.lock */,
 				E71006121D6D7A1A00BFCC18 /* Sources */,
 				E71006131D6D7A1A00BFCC18 /* Frameworks */,
 				E71006141D6D7A1A00BFCC18 /* Resources */,
+				E8D9249A54599702DA8BF55E /* 📦 Embed Pods Frameworks */,
+				C159620616594B22D9BE3510 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -205,6 +232,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C159620616594B22D9BE3510 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TaxibeatHomeTest/Pods-TaxibeatHomeTest-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E8D9249A54599702DA8BF55E /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TaxibeatHomeTest/Pods-TaxibeatHomeTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F13A98F519997D663916C0E5 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E71006121D6D7A1A00BFCC18 /* Sources */ = {
@@ -339,6 +414,7 @@
 		};
 		E71006391D6D7A1A00BFCC18 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9B5C9AF570D1FB09DC36B170 /* Pods-TaxibeatHomeTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TaxibeatHomeTest/Info.plist;
@@ -350,6 +426,7 @@
 		};
 		E710063A1D6D7A1A00BFCC18 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83DCB9D5E3E4BF7901623FFF /* Pods-TaxibeatHomeTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TaxibeatHomeTest/Info.plist;
@@ -402,6 +479,7 @@
 				E710063A1D6D7A1A00BFCC18 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E710063B1D6D7A1A00BFCC18 /* Build configuration list for PBXNativeTarget "TaxibeatHomeTestTests" */ = {
 			isa = XCConfigurationList;
@@ -410,6 +488,7 @@
 				E710063D1D6D7A1A00BFCC18 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
