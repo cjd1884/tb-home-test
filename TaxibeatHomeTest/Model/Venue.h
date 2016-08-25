@@ -6,15 +6,18 @@
 //  Copyright © 2016 taxibeat. All rights reserved.
 //
 
+
 #import <Foundation/Foundation.h>
+#import "MTLModel.h"
+#import <Mantle/Mantle.h>
 #import "Location.h"
 #import "VenueCategory.h"
 
-@interface Venue : NSObject
+@interface Venue : MTLModel <MTLJSONSerializing>
 
-@property(nonatomic, strong)NSString *venueId;
-@property(nonatomic, strong)NSString *name;
-@property(nonatomic, strong)Location *location;
-@property(nonatomic, strong)NSArray *categories;
+@property(nonatomic, copy)NSString *venueId;
+@property(nonatomic, copy)NSString *name;
+@property(nonatomic, copy)Location *location;
+@property(nonatomic, copy)NSArray *categories;
 
 @end

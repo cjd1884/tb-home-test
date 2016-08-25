@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MTLModel.h"
+#import <Mantle/Mantle.h>
 
-@interface VenueCategory : NSObject
+@interface VenueCategory : MTLModel <MTLJSONSerializing>
 
 @property(nonatomic, strong)NSString *name;
 

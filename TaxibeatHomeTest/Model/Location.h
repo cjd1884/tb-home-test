@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MTLModel.h"
+#import <Mantle/Mantle.h>
 
-@interface Location : NSObject
+@interface Location : MTLModel <MTLJSONSerializing>
 
 @property(nonatomic, strong)NSString *address;
 @property(nonatomic, strong)NSNumber *lat;

@@ -7,6 +7,9 @@
 //
 
 #import "TBViewController.h"
+#import "VenuesResponse.h"
+#import "Venue.h"
+#import "TBAPIManager.h"
 
 @interface TBViewController () {
     CLLocationManager *_locationAuthorizationManager;
@@ -48,6 +51,19 @@
         
         // Sanitize address string
         [self.addressLabel setText:[self sanitizeAddressWithThoroughfare:addressObj.thoroughfare andLocality:addressObj.locality]];
+        
+        // Fetch candy shops around (limited to 10 results)
+        [[TBAPIManager sharedManager] getVenuesWithLat:coordinates.latitude lon:coordinates.longitude andQuery:@"sweet" success:^(VenuesResponse *response) {
+            NSArray *venues = response.venues;
+            if (venues.count > 0) {
+                Venue *venue = venues[0];
+                if (venue.name != nil) {
+                    NSLog(@"%@", venue.name);
+                }
+            }
+        } failure:^(NSError *error) {
+            NSLog(@"Error fetching venues: %@", error.description);
+        }];
     }];
 }
 

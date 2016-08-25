@@ -10,4 +10,14 @@
 
 @implementation Location
 
+#pragma mark - Mantle JSONKeyPathsByPropertyKey
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{
+             @"address": @"address",
+             @"lat": @"lat",
+             @"lon": @"lng"
+             };
+}
+
 @end
