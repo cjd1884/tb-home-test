@@ -6,9 +6,9 @@
 //  Copyright © 2016 taxibeat. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "TBViewController.h"
 
-@interface ViewController () {
+@interface TBViewController () {
     CLLocationManager *_locationAuthorizationManager;
 }
 
@@ -17,7 +17,7 @@
 
 @end
 
-@implementation ViewController
+@implementation TBViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

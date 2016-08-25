@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  TBViewController.h
 //  TaxibeatHomeTest
 //
 //  Created by Konstantinos Dimitros on 24/08/16.
@@ -10,7 +10,7 @@
 #import <MapKit/MapKit.h>
 @import GoogleMaps;
 
-@interface ViewController : UIViewController <CLLocationManagerDelegate, GMSMapViewDelegate>
+@interface TBViewController : UIViewController <CLLocationManagerDelegate, GMSMapViewDelegate>
 
 
 @end

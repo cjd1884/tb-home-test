@@ -10,11 +10,14 @@
 		DB96523C088D028F9E2BCC3F /* libPods-TaxibeatHomeTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FFF46C21FBC3E28A5A992E4B /* libPods-TaxibeatHomeTest.a */; };
 		E710061B1D6D7A1A00BFCC18 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E710061A1D6D7A1A00BFCC18 /* main.m */; };
 		E710061E1D6D7A1A00BFCC18 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E710061D1D6D7A1A00BFCC18 /* AppDelegate.m */; };
-		E71006211D6D7A1A00BFCC18 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71006201D6D7A1A00BFCC18 /* ViewController.m */; };
 		E71006241D6D7A1A00BFCC18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E71006221D6D7A1A00BFCC18 /* Main.storyboard */; };
 		E71006261D6D7A1A00BFCC18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E71006251D6D7A1A00BFCC18 /* Assets.xcassets */; };
 		E71006291D6D7A1A00BFCC18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E71006271D6D7A1A00BFCC18 /* LaunchScreen.storyboard */; };
-		E71006341D6D7A1A00BFCC18 /* TaxibeatHomeTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E71006331D6D7A1A00BFCC18 /* TaxibeatHomeTestTests.m */; };
+		E76434121D6F0AC100890F6E /* VenueTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E76434111D6F0AC100890F6E /* VenueTest.m */; };
+		E764341E1D6F111400890F6E /* TBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E764341D1D6F111400890F6E /* TBViewController.m */; };
+		E76434231D6F12EA00890F6E /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = E76434221D6F12EA00890F6E /* Venue.m */; };
+		E76434261D6F159100890F6E /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = E76434251D6F159100890F6E /* Location.m */; };
+		E76434291D6F18AB00890F6E /* VenueCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = E76434281D6F18AB00890F6E /* VenueCategory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,15 +37,21 @@
 		E710061A1D6D7A1A00BFCC18 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E710061C1D6D7A1A00BFCC18 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E710061D1D6D7A1A00BFCC18 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		E710061F1D6D7A1A00BFCC18 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		E71006201D6D7A1A00BFCC18 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		E71006231D6D7A1A00BFCC18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E71006251D6D7A1A00BFCC18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E71006281D6D7A1A00BFCC18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E710062A1D6D7A1A00BFCC18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E710062F1D6D7A1A00BFCC18 /* TaxibeatHomeTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaxibeatHomeTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E71006331D6D7A1A00BFCC18 /* TaxibeatHomeTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaxibeatHomeTestTests.m; sourceTree = "<group>"; };
 		E71006351D6D7A1A00BFCC18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E76434111D6F0AC100890F6E /* VenueTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueTest.m; sourceTree = "<group>"; };
+		E764341C1D6F111400890F6E /* TBViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBViewController.h; sourceTree = "<group>"; };
+		E764341D1D6F111400890F6E /* TBViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBViewController.m; sourceTree = "<group>"; };
+		E76434211D6F12EA00890F6E /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
+		E76434221D6F12EA00890F6E /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
+		E76434241D6F159100890F6E /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		E76434251D6F159100890F6E /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		E76434271D6F18AB00890F6E /* VenueCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueCategory.h; sourceTree = "<group>"; };
+		E76434281D6F18AB00890F6E /* VenueCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueCategory.m; sourceTree = "<group>"; };
 		FFF46C21FBC3E28A5A992E4B /* libPods-TaxibeatHomeTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TaxibeatHomeTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -107,11 +116,12 @@
 			children = (
 				E710061C1D6D7A1A00BFCC18 /* AppDelegate.h */,
 				E710061D1D6D7A1A00BFCC18 /* AppDelegate.m */,
-				E710061F1D6D7A1A00BFCC18 /* ViewController.h */,
-				E71006201D6D7A1A00BFCC18 /* ViewController.m */,
 				E71006221D6D7A1A00BFCC18 /* Main.storyboard */,
-				E71006251D6D7A1A00BFCC18 /* Assets.xcassets */,
 				E71006271D6D7A1A00BFCC18 /* LaunchScreen.storyboard */,
+				E764341F1D6F118F00890F6E /* Model */,
+				E764341B1D6F111400890F6E /* Controller */,
+				E76434201D6F119700890F6E /* View */,
+				E71006251D6D7A1A00BFCC18 /* Assets.xcassets */,
 				E710062A1D6D7A1A00BFCC18 /* Info.plist */,
 				E71006191D6D7A1A00BFCC18 /* Supporting Files */,
 			);
@@ -129,10 +139,39 @@
 		E71006321D6D7A1A00BFCC18 /* TaxibeatHomeTestTests */ = {
 			isa = PBXGroup;
 			children = (
-				E71006331D6D7A1A00BFCC18 /* TaxibeatHomeTestTests.m */,
+				E76434111D6F0AC100890F6E /* VenueTest.m */,
 				E71006351D6D7A1A00BFCC18 /* Info.plist */,
 			);
 			path = TaxibeatHomeTestTests;
+			sourceTree = "<group>";
+		};
+		E764341B1D6F111400890F6E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E764341C1D6F111400890F6E /* TBViewController.h */,
+				E764341D1D6F111400890F6E /* TBViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E764341F1D6F118F00890F6E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E76434211D6F12EA00890F6E /* Venue.h */,
+				E76434221D6F12EA00890F6E /* Venue.m */,
+				E76434241D6F159100890F6E /* Location.h */,
+				E76434251D6F159100890F6E /* Location.m */,
+				E76434271D6F18AB00890F6E /* VenueCategory.h */,
+				E76434281D6F18AB00890F6E /* VenueCategory.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E76434201D6F119700890F6E /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,7 +325,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E71006211D6D7A1A00BFCC18 /* ViewController.m in Sources */,
+				E764341E1D6F111400890F6E /* TBViewController.m in Sources */,
+				E76434291D6F18AB00890F6E /* VenueCategory.m in Sources */,
+				E76434261D6F159100890F6E /* Location.m in Sources */,
+				E76434231D6F12EA00890F6E /* Venue.m in Sources */,
 				E710061E1D6D7A1A00BFCC18 /* AppDelegate.m in Sources */,
 				E710061B1D6D7A1A00BFCC18 /* main.m in Sources */,
 			);
@@ -296,7 +338,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E71006341D6D7A1A00BFCC18 /* TaxibeatHomeTestTests.m in Sources */,
+				E76434121D6F0AC100890F6E /* VenueTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +459,7 @@
 			baseConfigurationReference = 9B5C9AF570D1FB09DC36B170 /* Pods-TaxibeatHomeTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TaxibeatHomeTest/Info.plist;
@@ -424,6 +467,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = gr.taxibeat.TaxibeatHomeTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "TaxibeatHomeTest/TaxibeatHomeTest-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -432,6 +477,7 @@
 			baseConfigurationReference = 83DCB9D5E3E4BF7901623FFF /* Pods-TaxibeatHomeTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TaxibeatHomeTest/Info.plist;
@@ -439,6 +485,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = gr.taxibeat.TaxibeatHomeTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "TaxibeatHomeTest/TaxibeatHomeTest-Bridging-Header.h";
 			};
 			name = Release;
 		};
