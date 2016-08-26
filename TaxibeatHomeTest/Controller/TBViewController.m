@@ -38,6 +38,10 @@
     [self enableMyLocation];
     
     self.markers = [[NSMutableArray alloc] init];
+    
+    // Set logo
+    UIImageView *logoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Logo"]];
+    self.navigationItem.titleView = logoImageView;
 }
 
 - (void)didReceiveMemoryWarning {

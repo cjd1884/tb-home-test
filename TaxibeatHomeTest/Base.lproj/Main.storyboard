@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--CandyStore-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="TBViewController" sceneMemberID="viewController">
@@ -72,7 +72,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="D8v-4p-5oM"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -101,7 +101,14 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="CandyStore" id="V17-Zj-OsJ"/>
+                    <navigationItem key="navigationItem" id="V17-Zj-OsJ">
+                        <barButtonItem key="leftBarButtonItem" image="ico-home" id="MCl-Wt-f8K">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="ico-close" style="plain" id="Ssy-PU-uUY">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="addressLabel" destination="vGu-wF-p04" id="k81-ON-lM0"/>
                         <outlet property="mapView" destination="EHV-4G-uZl" id="vVk-0G-Kb6"/>
@@ -135,6 +142,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ico-close" width="17" height="17"/>
+        <image name="ico-home" width="17" height="17"/>
         <image name="ico-mylocation" width="15" height="15"/>
         <image name="ico-mylocation-pin" width="37" height="44"/>
     </resources>
