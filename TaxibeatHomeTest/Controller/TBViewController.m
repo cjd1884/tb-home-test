@@ -59,9 +59,6 @@
         
     }];
     
-    // Clear mapview
-    [self.mapView clear];
-    
     // Fetch candy shops around (limited to 10 results)
     [[TBAPIManager sharedManager] getVenuesWithLat:coordinates.latitude lon:coordinates.longitude andQuery:@"Candy Store" success:^(VenuesResponse *response) {
         NSArray *venues = response.venues;
@@ -99,6 +96,11 @@
 
 #pragma mark - Map helpers
 -(void)populateMapWithVenues:(NSArray*)venues {
+    
+    // Clear mapview
+    [self.mapView clear];
+    [self.markers removeAllObjects];
+    
     // Add markers on the map
     for (Venue *venue in venues) {
         CLLocationCoordinate2D position = CLLocationCoordinate2DMake(venue.location.lat.doubleValue, venue.location.lon.doubleValue);
@@ -120,6 +122,7 @@
 }
 
 -(BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker {
+    
     // Deselect all markers (update their icon)
     for (GMSMarker *otherMarker in self.markers) {
         otherMarker.icon = [UIImage imageNamed:@"ico-venue"];
@@ -128,6 +131,13 @@
     marker.icon = [UIImage imageNamed:@"ico-venue-selected"];
     
     return YES;
+}
+
+-(void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate {
+    // Deselect all markers (update their icon)
+    for (GMSMarker *otherMarker in self.markers) {
+        otherMarker.icon = [UIImage imageNamed:@"ico-venue"];
+    }
 }
 
 #pragma mark - Location
