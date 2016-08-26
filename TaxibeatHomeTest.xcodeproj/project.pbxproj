@@ -11,6 +11,8 @@
 		E705A5411D6F2BC800B6D8CB /* TBSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E705A5401D6F2BC800B6D8CB /* TBSessionManager.m */; };
 		E705A5441D6F2E1A00B6D8CB /* VenuesResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E705A5431D6F2E1A00B6D8CB /* VenuesResponse.m */; };
 		E705A5471D6F309700B6D8CB /* TBAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E705A5461D6F309700B6D8CB /* TBAPIManager.m */; };
+		E705A54A1D7063C600B6D8CB /* TBVenueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E705A5491D7063C600B6D8CB /* TBVenueViewController.m */; };
+		E705A54D1D70CEDA00B6D8CB /* VenueResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E705A54C1D70CEDA00B6D8CB /* VenueResponse.m */; };
 		E710061B1D6D7A1A00BFCC18 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E710061A1D6D7A1A00BFCC18 /* main.m */; };
 		E710061E1D6D7A1A00BFCC18 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E710061D1D6D7A1A00BFCC18 /* AppDelegate.m */; };
 		E71006241D6D7A1A00BFCC18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E71006221D6D7A1A00BFCC18 /* Main.storyboard */; };
@@ -42,6 +44,10 @@
 		E705A5431D6F2E1A00B6D8CB /* VenuesResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenuesResponse.m; sourceTree = "<group>"; };
 		E705A5451D6F309700B6D8CB /* TBAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBAPIManager.h; sourceTree = "<group>"; };
 		E705A5461D6F309700B6D8CB /* TBAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBAPIManager.m; sourceTree = "<group>"; };
+		E705A5481D7063C600B6D8CB /* TBVenueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBVenueViewController.h; sourceTree = "<group>"; };
+		E705A5491D7063C600B6D8CB /* TBVenueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBVenueViewController.m; sourceTree = "<group>"; };
+		E705A54B1D70CEDA00B6D8CB /* VenueResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueResponse.h; sourceTree = "<group>"; };
+		E705A54C1D70CEDA00B6D8CB /* VenueResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueResponse.m; sourceTree = "<group>"; };
 		E71006161D6D7A1A00BFCC18 /* TaxibeatHomeTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaxibeatHomeTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E710061A1D6D7A1A00BFCC18 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E710061C1D6D7A1A00BFCC18 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -171,6 +177,8 @@
 			children = (
 				E764341C1D6F111400890F6E /* TBViewController.h */,
 				E764341D1D6F111400890F6E /* TBViewController.m */,
+				E705A5481D7063C600B6D8CB /* TBVenueViewController.h */,
+				E705A5491D7063C600B6D8CB /* TBVenueViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -180,6 +188,8 @@
 			children = (
 				E705A5421D6F2E1A00B6D8CB /* VenuesResponse.h */,
 				E705A5431D6F2E1A00B6D8CB /* VenuesResponse.m */,
+				E705A54B1D70CEDA00B6D8CB /* VenueResponse.h */,
+				E705A54C1D70CEDA00B6D8CB /* VenueResponse.m */,
 				E76434211D6F12EA00890F6E /* Venue.h */,
 				E76434221D6F12EA00890F6E /* Venue.m */,
 				E76434241D6F159100890F6E /* Location.h */,
@@ -356,7 +366,9 @@
 				E76434231D6F12EA00890F6E /* Venue.m in Sources */,
 				E710061E1D6D7A1A00BFCC18 /* AppDelegate.m in Sources */,
 				E710061B1D6D7A1A00BFCC18 /* main.m in Sources */,
+				E705A54A1D7063C600B6D8CB /* TBVenueViewController.m in Sources */,
 				E705A5411D6F2BC800B6D8CB /* TBSessionManager.m in Sources */,
+				E705A54D1D70CEDA00B6D8CB /* VenueResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

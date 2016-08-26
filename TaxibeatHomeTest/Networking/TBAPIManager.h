@@ -8,6 +8,7 @@
 
 #import "TBSessionManager.h"
 #import "VenuesResponse.h"
+#import "VenueResponse.h"
 
 @interface TBAPIManager : TBSessionManager
 
@@ -16,6 +17,10 @@
                                   andQuery:(NSString*)query
                                    success:(void (^)(VenuesResponse *response))success
                                    failure:(void (^)(NSError *error))failure;
+
+- (NSURLSessionDataTask *)getVenueWithId:(NSString*)venueId
+                             success:(void (^)(VenueResponse *response))success
+                             failure:(void (^)(NSError *error))failure;
 
 
 @end

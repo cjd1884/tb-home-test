@@ -8,10 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "Venue.h"
 @import GoogleMaps;
+
+@protocol TBVenueSelectionDelegate <NSObject>
+
+@optional
+- (void) markerSelectedWithVenue:(Venue*)venue;
+
+@end
 
 @interface TBViewController : UIViewController <CLLocationManagerDelegate, GMSMapViewDelegate>
 
+@property (nonatomic,strong) id <TBVenueSelectionDelegate> delegate;
 
 @end
 

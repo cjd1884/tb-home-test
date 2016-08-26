@@ -32,4 +32,22 @@
     
 }
 
+- (NSURLSessionDataTask *)getVenueWithId:(NSString*)venueId
+                             success:(void (^)(VenueResponse *response))success
+                             failure:(void (^)(NSError *error))failure {
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@/%@?client_id=%@&client_secret=%@&v=20160825", kBaseURL, kVenueURL, venueId, kClientId, kClientSecret];
+    
+    return [self GET:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary *responseDictionary = (NSDictionary *)responseObject;
+        
+        NSError *error;
+        VenueResponse *venue = [MTLJSONAdapter modelOfClass:VenueResponse.class
+                                         fromJSONDictionary:responseDictionary error:&error];
+        success(venue);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failure(error);
+    }];
+}
+
 @end

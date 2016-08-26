@@ -19,5 +19,6 @@
 @property(nonatomic, copy)NSString *name;
 @property(nonatomic, copy)Location *location;
 @property(nonatomic, copy)NSArray *categories;
+@property(nonatomic, copy)NSNumber *rating;
 
 @end

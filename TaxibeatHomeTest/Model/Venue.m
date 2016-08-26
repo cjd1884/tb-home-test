@@ -19,7 +19,8 @@
              @"venueId": @"id",
              @"name": @"name",
              @"location": @"location",
-             @"categories": @"categories"
+             @"categories": @"categories",
+             @"rating": @"rating"
              };
 }
 

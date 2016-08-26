@@ -8,8 +8,9 @@
 
 #import "TBViewController.h"
 #import "VenuesResponse.h"
-#import "Venue.h"
+#import "VenueResponse.h"
 #import "TBAPIManager.h"
+#import "TBVenueViewController.h"
 
 @interface TBViewController () {
     CLLocationManager *_locationAuthorizationManager;
@@ -18,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (strong, nonatomic) NSMutableArray *markers;
+@property (strong, nonatomic) NSMutableArray *venues;
 
 @end
 
@@ -38,6 +40,7 @@
     [self enableMyLocation];
     
     self.markers = [[NSMutableArray alloc] init];
+    self.venues = [[NSMutableArray alloc] init];
     
     // Set logo
     UIImageView *logoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Logo"]];
@@ -104,6 +107,7 @@
     // Clear mapview
     [self.mapView clear];
     [self.markers removeAllObjects];
+    [self.venues removeAllObjects];
     
     // Add markers on the map
     for (Venue *venue in venues) {
@@ -111,7 +115,9 @@
         GMSMarker *marker = [GMSMarker markerWithPosition:position];
         marker.icon = [UIImage imageNamed:@"ico-venue"];
         marker.map = self.mapView;
+        marker.title = venue.venueId;
         [self.markers addObject:marker];
+        [self.venues addObject:venue];
     }
 }
 
@@ -133,6 +139,18 @@
     }
     // Select marker
     marker.icon = [UIImage imageNamed:@"ico-venue-selected"];
+    
+    // Fetch venue details
+    [[TBAPIManager sharedManager] getVenueWithId:marker.title success:^(VenueResponse *response) {
+        Venue *venue = response.venue;
+        if (venue.name != nil) {
+            NSLog(@"Fetched venue with name: %@, rating: %lf", venue.name, venue.rating.floatValue);
+        }
+        [self.delegate markerSelectedWithVenue:venue];
+        // Inform delegate for data availability
+    } failure:^(NSError *error) {
+        NSLog(@"Error fetching venue details: %@", error.description);
+    }];
     
     return YES;
 }
@@ -191,6 +209,14 @@
     // Reverse geocode user location
     [self reverseGeocodeWithCoordinates:coordinates];
     
+}
+
+#pragma mark - Segue
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"VenueEmbededController"]) {
+        TBVenueViewController *vc = segue.destinationViewController;
+        self.delegate = vc;
+    }
 }
 
 @end
