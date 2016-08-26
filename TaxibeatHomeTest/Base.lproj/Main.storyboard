@@ -232,6 +232,7 @@
                         <outlet property="addressLabel" destination="1cb-HD-Scx" id="JuZ-h7-WU3"/>
                         <outlet property="categoryLabel" destination="g39-Rt-JKs" id="u6C-eg-gcK"/>
                         <outlet property="containerView" destination="VGS-GY-Njl" id="Ozd-PF-Eol"/>
+                        <outlet property="imageView" destination="tTC-kR-zQR" id="8UJ-qz-PYu"/>
                         <outlet property="nameLabel" destination="vSi-6O-4Qy" id="qco-za-ePt"/>
                         <outlet property="ratingLabel" destination="zhR-va-0uF" id="lVc-Kg-gJX"/>
                     </connections>

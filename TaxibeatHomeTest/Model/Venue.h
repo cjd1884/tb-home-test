@@ -11,6 +11,7 @@
 #import "MTLModel.h"
 #import <Mantle/Mantle.h>
 #import "Location.h"
+#import "Photo.h"
 #import "VenueCategory.h"
 
 @interface Venue : MTLModel <MTLJSONSerializing>
@@ -20,5 +21,6 @@
 @property(nonatomic, copy)Location *location;
 @property(nonatomic, copy)NSArray *categories;
 @property(nonatomic, copy)NSNumber *rating;
+@property(nonatomic, copy)Photo *bestPhoto;
 
 @end

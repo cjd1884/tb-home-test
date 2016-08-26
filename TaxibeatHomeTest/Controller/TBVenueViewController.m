@@ -8,6 +8,7 @@
 
 #import "TBVenueViewController.h"
 #import "VenueCategory.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
 @interface TBVenueViewController ()
 
@@ -16,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 
@@ -54,6 +56,17 @@
     } else {
         self.ratingLabel.text = [NSString stringWithFormat:@"%.1lf", venue.rating.floatValue];
     }
+    [self.imageView setImage:nil];
+    if (venue.bestPhoto != nil) {
+        NSString *dimensionString = [NSString stringWithFormat:@"%ldx%ld", (unsigned long)(3 * self.imageView.frame.size.width), (unsigned long)(3 * self.imageView.frame.size.height)];
+        [self.imageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", venue.bestPhoto.prefix, dimensionString, venue.bestPhoto.suffix]]];
+        self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        
+    } else {
+        [self.imageView setImage:[UIImage imageNamed:@"placeholder"]];
+        self.imageView.contentMode = UIViewContentModeCenter;
+    }
+    
 }
 
 @end

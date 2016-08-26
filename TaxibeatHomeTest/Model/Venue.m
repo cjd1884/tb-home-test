@@ -20,7 +20,8 @@
              @"name": @"name",
              @"location": @"location",
              @"categories": @"categories",
-             @"rating": @"rating"
+             @"rating": @"rating",
+             @"bestPhoto": @"bestPhoto"
              };
 }
 
@@ -28,6 +29,10 @@
 
 + (NSValueTransformer *)locationJSONTransformer {
     return [MTLJSONAdapter dictionaryTransformerWithModelClass:Location.class];
+}
+
++ (NSValueTransformer *)bestPhotoJSONTransformer {
+    return [MTLJSONAdapter dictionaryTransformerWithModelClass:Photo.class];
 }
 
 + (NSValueTransformer *)categoriesJSONTransformer {

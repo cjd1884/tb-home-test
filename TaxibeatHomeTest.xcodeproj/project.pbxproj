@@ -13,6 +13,7 @@
 		E705A5471D6F309700B6D8CB /* TBAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E705A5461D6F309700B6D8CB /* TBAPIManager.m */; };
 		E705A54A1D7063C600B6D8CB /* TBVenueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E705A5491D7063C600B6D8CB /* TBVenueViewController.m */; };
 		E705A54D1D70CEDA00B6D8CB /* VenueResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E705A54C1D70CEDA00B6D8CB /* VenueResponse.m */; };
+		E705A5501D70E88800B6D8CB /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = E705A54F1D70E88800B6D8CB /* Photo.m */; };
 		E710061B1D6D7A1A00BFCC18 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E710061A1D6D7A1A00BFCC18 /* main.m */; };
 		E710061E1D6D7A1A00BFCC18 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E710061D1D6D7A1A00BFCC18 /* AppDelegate.m */; };
 		E71006241D6D7A1A00BFCC18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E71006221D6D7A1A00BFCC18 /* Main.storyboard */; };
@@ -48,6 +49,8 @@
 		E705A5491D7063C600B6D8CB /* TBVenueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBVenueViewController.m; sourceTree = "<group>"; };
 		E705A54B1D70CEDA00B6D8CB /* VenueResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueResponse.h; sourceTree = "<group>"; };
 		E705A54C1D70CEDA00B6D8CB /* VenueResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueResponse.m; sourceTree = "<group>"; };
+		E705A54E1D70E88800B6D8CB /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		E705A54F1D70E88800B6D8CB /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 		E71006161D6D7A1A00BFCC18 /* TaxibeatHomeTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaxibeatHomeTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E710061A1D6D7A1A00BFCC18 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E710061C1D6D7A1A00BFCC18 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -196,6 +199,8 @@
 				E76434251D6F159100890F6E /* Location.m */,
 				E76434271D6F18AB00890F6E /* VenueCategory.h */,
 				E76434281D6F18AB00890F6E /* VenueCategory.m */,
+				E705A54E1D70E88800B6D8CB /* Photo.h */,
+				E705A54F1D70E88800B6D8CB /* Photo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -358,6 +363,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E705A5501D70E88800B6D8CB /* Photo.m in Sources */,
 				E705A5471D6F309700B6D8CB /* TBAPIManager.m in Sources */,
 				E705A5441D6F2E1A00B6D8CB /* VenuesResponse.m in Sources */,
 				E764341E1D6F111400890F6E /* TBViewController.m in Sources */,
