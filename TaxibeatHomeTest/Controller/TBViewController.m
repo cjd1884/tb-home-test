@@ -17,6 +17,7 @@
 
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (strong, nonatomic) NSMutableArray *markers;
 
 @end
 
@@ -35,6 +36,8 @@
     
     // Try too enable location updates
     [self enableMyLocation];
+    
+    self.markers = [[NSMutableArray alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,6 +47,8 @@
 
 #pragma mark - Geocoding
 -(void)reverseGeocodeWithCoordinates:(CLLocationCoordinate2D)coordinates {
+    
+    // Reverse geocode
     [[GMSGeocoder geocoder] reverseGeocodeCoordinate:coordinates completionHandler:^(GMSReverseGeocodeResponse* response, NSError* error) {
         
         // Get reverse geocoded address
@@ -52,19 +57,27 @@
         // Sanitize address string
         [self.addressLabel setText:[self sanitizeAddressWithThoroughfare:addressObj.thoroughfare andLocality:addressObj.locality]];
         
-        // Fetch candy shops around (limited to 10 results)
-        [[TBAPIManager sharedManager] getVenuesWithLat:coordinates.latitude lon:coordinates.longitude andQuery:@"sweet" success:^(VenuesResponse *response) {
-            NSArray *venues = response.venues;
-            if (venues.count > 0) {
-                Venue *venue = venues[0];
-                if (venue.name != nil) {
-                    NSLog(@"%@", venue.name);
-                }
-            }
-        } failure:^(NSError *error) {
-            NSLog(@"Error fetching venues: %@", error.description);
-        }];
     }];
+    
+    // Clear mapview
+    [self.mapView clear];
+    
+    // Fetch candy shops around (limited to 10 results)
+    [[TBAPIManager sharedManager] getVenuesWithLat:coordinates.latitude lon:coordinates.longitude andQuery:@"Candy Store" success:^(VenuesResponse *response) {
+        NSArray *venues = response.venues;
+        if (venues.count > 0) {
+            Venue *venue = venues[0];
+            if (venue.name != nil) {
+                NSLog(@"%@", venue.name);
+            }
+            // Populate shops on the map
+            [self populateMapWithVenues:venues];
+        }
+    } failure:^(NSError *error) {
+        NSLog(@"Error fetching venues: %@", error.description);
+    }];
+    
+    
 }
 
 -(NSString*)sanitizeAddressWithThoroughfare:(NSString*)thoroughfare andLocality:(NSString*)locality {
@@ -84,6 +97,18 @@
     return NSLocalizedString(@"Address unavailable", nil);
 }
 
+#pragma mark - Map helpers
+-(void)populateMapWithVenues:(NSArray*)venues {
+    // Add markers on the map
+    for (Venue *venue in venues) {
+        CLLocationCoordinate2D position = CLLocationCoordinate2DMake(venue.location.lat.doubleValue, venue.location.lon.doubleValue);
+        GMSMarker *marker = [GMSMarker markerWithPosition:position];
+        marker.icon = [UIImage imageNamed:@"ico-venue"];
+        marker.map = self.mapView;
+        [self.markers addObject:marker];
+    }
+}
+
 #pragma mark - Google Maps delegate
 -(void)mapView:(GMSMapView *)mapView idleAtCameraPosition:(GMSCameraPosition *)position {
     // Get coordinates
@@ -94,7 +119,18 @@
     [self reverseGeocodeWithCoordinates:CLLocationCoordinate2DMake(latitude, longitude)];
 }
 
-#pragma mark - Location authorization
+-(BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker {
+    // Deselect all markers (update their icon)
+    for (GMSMarker *otherMarker in self.markers) {
+        otherMarker.icon = [UIImage imageNamed:@"ico-venue"];
+    }
+    // Select marker
+    marker.icon = [UIImage imageNamed:@"ico-venue-selected"];
+    
+    return YES;
+}
+
+#pragma mark - Location
 - (void)enableMyLocation
 {
     CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
