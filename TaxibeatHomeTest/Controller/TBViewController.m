@@ -128,8 +128,8 @@ NSString *kCandystoreCatergoryId = @"4bf58dd8d48988d117951735";
         CLLocationCoordinate2D position = CLLocationCoordinate2DMake(venue.location.lat.doubleValue, venue.location.lon.doubleValue);
         GMSMarker *marker = [GMSMarker markerWithPosition:position];
         marker.icon = [UIImage imageNamed:@"ico-venue"];
-        marker.map = self.mapView;
         marker.title = venue.venueId;
+        marker.map = self.mapView;
         if (selectedVenue != nil && [selectedVenue.venueId isEqualToString:venue.venueId]) {
             [self updateIconOfMarker:marker withVenue:venue selected:YES];
         } else {
@@ -153,6 +153,7 @@ NSString *kCandystoreCatergoryId = @"4bf58dd8d48988d117951735";
         NSLog(@"%@", [NSString stringWithFormat:@"%@64%@", category.prefix, category.suffix]);
         [imageView setImageWithURLRequest:imageRequest placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
             marker.icon = [TBViewController drawImage:image inImage:baseImage atPoint:CGPointMake(-1, -1)];
+            marker.map = self.mapView;
         } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
             
         }];
