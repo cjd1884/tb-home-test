@@ -12,10 +12,15 @@
 #import "TBAPIManager.h"
 #import "TBVenueViewController.h"
 
+CGFloat kOffset = 14.0f;
+CGFloat kAnimationDuration = 0.2f;
+
 @interface TBViewController () {
     CLLocationManager *_locationAuthorizationManager;
 }
 
+@property (weak, nonatomic) IBOutlet UIView *containerView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *containerTopConstraint;
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (strong, nonatomic) NSMutableArray *markers;
@@ -27,6 +32,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Hide venue container
+    self.containerTopConstraint.constant = -kOffset - self.containerView.frame.size.height;
     
     // Set Google Maps view delegate
     self.mapView.delegate = self;
@@ -45,6 +53,7 @@
     // Set logo
     UIImageView *logoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Logo"]];
     self.navigationItem.titleView = logoImageView;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -121,6 +130,39 @@
     }
 }
 
+-(void)selectMarkersWithVenue:(Venue*)venue {
+    
+    // Update delegate
+    [self.delegate markerSelectedWithVenue:venue];
+
+    [self.view layoutIfNeeded];
+    
+    // Animate container view
+    [UIView animateWithDuration:kAnimationDuration animations:^{
+        self.containerTopConstraint.constant = kOffset;
+        [self.view layoutIfNeeded];
+    }];
+    
+}
+
+-(void)deselectAllMarkers {
+    
+    //  Update markers' icon
+    for (GMSMarker *otherMarker in self.markers) {
+        otherMarker.icon = [UIImage imageNamed:@"ico-venue"];
+    }
+    
+    [self.view layoutIfNeeded];
+    
+    // Animate container view
+    [UIView animateWithDuration:kAnimationDuration animations:^{
+        self.containerTopConstraint.constant = -kOffset - self.containerView.frame.size.height;
+        [self.view layoutIfNeeded];
+    }];
+}
+
+
+
 #pragma mark - Google Maps delegate
 -(void)mapView:(GMSMapView *)mapView idleAtCameraPosition:(GMSCameraPosition *)position {
     // Get coordinates
@@ -133,10 +175,9 @@
 
 -(BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker {
     
-    // Deselect all markers (update their icon)
-    for (GMSMarker *otherMarker in self.markers) {
-        otherMarker.icon = [UIImage imageNamed:@"ico-venue"];
-    }
+    // Deselect all markers
+    [self deselectAllMarkers];
+    
     // Select marker
     marker.icon = [UIImage imageNamed:@"ico-venue-selected"];
     
@@ -146,8 +187,8 @@
         if (venue.name != nil) {
             NSLog(@"Fetched venue with name: %@, rating: %lf", venue.name, venue.rating.floatValue);
         }
-        [self.delegate markerSelectedWithVenue:venue];
-        // Inform delegate for data availability
+        [self selectMarkersWithVenue:venue];
+        
     } failure:^(NSError *error) {
         NSLog(@"Error fetching venue details: %@", error.description);
     }];
@@ -156,10 +197,8 @@
 }
 
 -(void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate {
-    // Deselect all markers (update their icon)
-    for (GMSMarker *otherMarker in self.markers) {
-        otherMarker.icon = [UIImage imageNamed:@"ico-venue"];
-    }
+    // Deselect all markers
+    [self deselectAllMarkers];
 }
 
 #pragma mark - Location
