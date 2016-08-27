@@ -14,6 +14,8 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "UIImage+Drawing.h"
 
+#define IS_PHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+
 CGFloat kOffset = 14.0f;
 CGFloat kAnimationDuration = 0.2f;
 NSString *kCandystoreCatergoryId = @"4bf58dd8d48988d117951735";
@@ -156,7 +158,11 @@ NSString *kCandystoreCatergoryId = @"4bf58dd8d48988d117951735";
         UIImageView *imageView = [[UIImageView alloc] init];
         NSURLRequest *imageRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@64%@", category.prefix, category.suffix]]];
         [imageView setImageWithURLRequest:imageRequest placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
-            marker.icon = [UIImage drawImage:image inImage:baseImage atPoint:CGPointMake(-1, -1)];
+            if ([self iPhone6PlusDevice]) {
+                marker.icon = [UIImage drawImage:image inImage:baseImage atPoint:CGPointMake(4, 4)];
+            } else {
+                marker.icon = [UIImage drawImage:image inImage:baseImage atPoint:CGPointMake(-1, -1)];
+            }
             marker.map = self.mapView;
         } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
             
@@ -300,6 +306,13 @@ NSString *kCandystoreCatergoryId = @"4bf58dd8d48988d117951735";
         TBVenueViewController *vc = segue.destinationViewController;
         self.delegate = vc;
     }
+}
+
+#pragma mark - Helper
+-(BOOL)iPhone6PlusDevice{
+    if (!IS_PHONE) return NO;
+    if ([UIScreen mainScreen].scale > 2.9) return YES;   // Scale is only 3 when not in scaled mode for iPhone 6 Plus
+    return NO;
 }
 
 @end
