@@ -12,12 +12,12 @@
 
 - (NSURLSessionDataTask *)getVenuesWithLat:(double)lat
                                        lon:(double)lon
-                                  andQuery:(NSString*)query
+                             andCategoryId:(NSString*)categoryId
                                    success:(void (^)(VenuesResponse *response))success
                                    failure:(void (^)(NSError *error))failure {
     
-    NSString *encodedQueryString = [query stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    NSString *urlString = [NSString stringWithFormat:@"%@%@?ll=%lf,%lf&query=%@&limit=10&client_id=%@&client_secret=%@&v=20160825", kBaseURL, kSearchURL, lat, lon, encodedQueryString, kClientId, kClientSecret];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@?ll=%lf,%lf&categoryId=%@&limit=10&client_id=%@&client_secret=%@&v=20160825", kBaseURL, kSearchURL, lat, lon, categoryId, kClientId, kClientSecret];
+    
     
     return [self GET:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *responseDictionary = (NSDictionary *)responseObject;

@@ -14,7 +14,7 @@
 
 - (NSURLSessionDataTask *)getVenuesWithLat:(double)lat
                                        lon:(double)lon
-                                  andQuery:(NSString*)query
+                             andCategoryId:(NSString*)categoryId
                                    success:(void (^)(VenuesResponse *response))success
                                    failure:(void (^)(NSError *error))failure;
 

@@ -15,6 +15,7 @@
 
 CGFloat kOffset = 14.0f;
 CGFloat kAnimationDuration = 0.2f;
+NSString *kCandystoreCatergoryId = @"4bf58dd8d48988d117951735";
 
 @interface TBViewController () {
     CLLocationManager *_locationAuthorizationManager;
@@ -77,7 +78,7 @@ CGFloat kAnimationDuration = 0.2f;
     }];
     
     // Fetch candy shops around (limited to 10 results)
-    [[TBAPIManager sharedManager] getVenuesWithLat:coordinates.latitude lon:coordinates.longitude andQuery:@"Candy Store" success:^(VenuesResponse *response) {
+    [[TBAPIManager sharedManager] getVenuesWithLat:coordinates.latitude lon:coordinates.longitude andCategoryId:kCandystoreCatergoryId success:^(VenuesResponse *response) {
         NSArray *venues = response.venues;
         if (venues.count > 0) {
             Venue *venue = venues[0];
