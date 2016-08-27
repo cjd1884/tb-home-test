@@ -11,6 +11,7 @@
 #import "VenueResponse.h"
 #import "TBAPIManager.h"
 #import "TBVenueViewController.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
 CGFloat kOffset = 14.0f;
 CGFloat kAnimationDuration = 0.2f;
@@ -84,7 +85,11 @@ CGFloat kAnimationDuration = 0.2f;
                 NSLog(@"%@", venue.name);
             }
             // Populate shops on the map
-            [self populateMapWithVenues:venues];
+            [self.venues removeAllObjects];
+            [self populateMapWithVenues:venues selected:nil];
+            for (Venue *venue in venues) {
+                [self.venues addObject:venue];
+            }
         }
     } failure:^(NSError *error) {
         NSLog(@"Error fetching venues: %@", error.description);
@@ -111,12 +116,11 @@ CGFloat kAnimationDuration = 0.2f;
 }
 
 #pragma mark - Map helpers
--(void)populateMapWithVenues:(NSArray*)venues {
+-(void)populateMapWithVenues:(NSArray*)venues selected:(Venue*)selectedVenue {
     
     // Clear mapview
     [self.mapView clear];
     [self.markers removeAllObjects];
-    [self.venues removeAllObjects];
     
     // Add markers on the map
     for (Venue *venue in venues) {
@@ -125,16 +129,47 @@ CGFloat kAnimationDuration = 0.2f;
         marker.icon = [UIImage imageNamed:@"ico-venue"];
         marker.map = self.mapView;
         marker.title = venue.venueId;
+        if (selectedVenue != nil && [selectedVenue.venueId isEqualToString:venue.venueId]) {
+            [self updateIconOfMarker:marker withVenue:venue selected:YES];
+        } else {
+            [self updateIconOfMarker:marker withVenue:venue selected:NO];
+        }
         [self.markers addObject:marker];
-        [self.venues addObject:venue];
     }
 }
 
--(void)selectMarkersWithVenue:(Venue*)venue {
+-(void)updateIconOfMarker:(GMSMarker*) marker withVenue:(Venue*)venue selected:(BOOL)isSelected {
+    if (venue.categories.count > 0) {
+        UIImage *baseImage;
+        if (isSelected) {
+            baseImage = [UIImage imageNamed:@"ico-venue-selected"];
+        } else {
+            baseImage = [UIImage imageNamed:@"ico-venue"];
+        }
+        VenueCategory *category = venue.categories[0];
+        UIImageView *imageView = [[UIImageView alloc] init];
+        NSURLRequest *imageRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@64%@", category.prefix, category.suffix]]];
+        NSLog(@"%@", [NSString stringWithFormat:@"%@64%@", category.prefix, category.suffix]);
+        [imageView setImageWithURLRequest:imageRequest placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
+            marker.icon = [TBViewController drawImage:image inImage:baseImage atPoint:CGPointMake(-1, -1)];
+        } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+            
+        }];
+    }
+}
+
+-(void)selectMarkerWithVenue:(Venue*)venue {
     
     // Update delegate
     [self.delegate markerSelectedWithVenue:venue];
 
+    // Show container view
+    [self showContainerView];
+    
+}
+
+-(void)showContainerView {
+    
     [self.view layoutIfNeeded];
     
     // Animate container view
@@ -148,16 +183,10 @@ CGFloat kAnimationDuration = 0.2f;
                          [self.view layoutIfNeeded];
                      } completion:^(BOOL finished) {
                          //
-    }];
-    
+                     }];
 }
 
--(void)deselectAllMarkers {
-    
-    //  Update markers' icon
-    for (GMSMarker *otherMarker in self.markers) {
-        otherMarker.icon = [UIImage imageNamed:@"ico-venue"];
-    }
+-(void)hideContainerView {
     
     [self.view layoutIfNeeded];
     
@@ -182,11 +211,8 @@ CGFloat kAnimationDuration = 0.2f;
 
 -(BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker {
     
-    // Deselect all markers
-    [self deselectAllMarkers];
-    
-    // Select marker
-    marker.icon = [UIImage imageNamed:@"ico-venue-selected"];
+    // Hide container view
+    [self hideContainerView];
     
     // Fetch venue details
     [[TBAPIManager sharedManager] getVenueWithId:marker.title success:^(VenueResponse *response) {
@@ -194,7 +220,9 @@ CGFloat kAnimationDuration = 0.2f;
         if (venue.name != nil) {
             NSLog(@"Fetched venue with name: %@, rating: %lf", venue.name, venue.rating.floatValue);
         }
-        [self selectMarkersWithVenue:venue];
+        // Deselect all markers except selected
+        [self populateMapWithVenues:self.venues selected:venue];
+        [self selectMarkerWithVenue:venue];
         
     } failure:^(NSError *error) {
         NSLog(@"Error fetching venue details: %@", error.description);
@@ -204,8 +232,11 @@ CGFloat kAnimationDuration = 0.2f;
 }
 
 -(void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate {
+    // Hide container view
+    [self hideContainerView];
+    
     // Deselect all markers
-    [self deselectAllMarkers];
+    [self populateMapWithVenues:self.venues selected:nil];
 }
 
 #pragma mark - Location
@@ -263,6 +294,19 @@ CGFloat kAnimationDuration = 0.2f;
         TBVenueViewController *vc = segue.destinationViewController;
         self.delegate = vc;
     }
+}
+
++(UIImage*) drawImage:(UIImage*) fgImage
+              inImage:(UIImage*) bgImage
+              atPoint:(CGPoint)  point
+{
+    UIGraphicsBeginImageContextWithOptions(bgImage.size, FALSE, 0.0);
+    [bgImage drawInRect:CGRectMake( 0, 0, bgImage.size.width, bgImage.size.height)];
+    [fgImage drawInRect:CGRectMake( point.x, point.y, fgImage.size.width, fgImage.size.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
 }
 
 @end

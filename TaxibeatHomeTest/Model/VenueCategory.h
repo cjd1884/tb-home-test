@@ -13,5 +13,7 @@
 @interface VenueCategory : MTLModel <MTLJSONSerializing>
 
 @property(nonatomic, strong)NSString *name;
+@property(nonatomic, strong)NSString *prefix;
+@property(nonatomic, strong)NSString *suffix;
 
 @end
