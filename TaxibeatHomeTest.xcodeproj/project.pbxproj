@@ -16,6 +16,7 @@
 		E705A54D1D70CEDA00B6D8CB /* VenueResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E705A54C1D70CEDA00B6D8CB /* VenueResponse.m */; };
 		E705A5501D70E88800B6D8CB /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = E705A54F1D70E88800B6D8CB /* Photo.m */; };
 		E705A5521D717E7100B6D8CB /* TBGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = E705A5511D717E7100B6D8CB /* TBGlobals.swift */; };
+		E705A55E1D71CF4B00B6D8CB /* UIImage+Drawing.m in Sources */ = {isa = PBXBuildFile; fileRef = E705A55D1D71CF4B00B6D8CB /* UIImage+Drawing.m */; };
 		E710061B1D6D7A1A00BFCC18 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E710061A1D6D7A1A00BFCC18 /* main.m */; };
 		E710061E1D6D7A1A00BFCC18 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E710061D1D6D7A1A00BFCC18 /* AppDelegate.m */; };
 		E71006241D6D7A1A00BFCC18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E71006221D6D7A1A00BFCC18 /* Main.storyboard */; };
@@ -58,6 +59,8 @@
 		E705A54F1D70E88800B6D8CB /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Photo.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E705A5511D717E7100B6D8CB /* TBGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TBGlobals.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		E705A5541D71811E00B6D8CB /* TaxibeatHomeTest-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "TaxibeatHomeTest-Bridging-Header.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		E705A55C1D71CF4B00B6D8CB /* UIImage+Drawing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Drawing.h"; sourceTree = "<group>"; };
+		E705A55D1D71CF4B00B6D8CB /* UIImage+Drawing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Drawing.m"; sourceTree = "<group>"; };
 		E71006161D6D7A1A00BFCC18 /* TaxibeatHomeTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaxibeatHomeTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E710061A1D6D7A1A00BFCC18 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		E710061C1D6D7A1A00BFCC18 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -131,6 +134,15 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
+		E705A55B1D71CF4B00B6D8CB /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				E705A55C1D71CF4B00B6D8CB /* UIImage+Drawing.h */,
+				E705A55D1D71CF4B00B6D8CB /* UIImage+Drawing.m */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		E710060D1D6D7A1A00BFCC18 = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +175,7 @@
 				E764341B1D6F111400890F6E /* Controller */,
 				E76434201D6F119700890F6E /* View */,
 				E705A53E1D6F2B8700B6D8CB /* Networking */,
+				E705A55B1D71CF4B00B6D8CB /* Helper */,
 				E71006251D6D7A1A00BFCC18 /* Assets.xcassets */,
 				E710062A1D6D7A1A00BFCC18 /* Info.plist */,
 				E71006191D6D7A1A00BFCC18 /* Supporting Files */,
@@ -430,6 +443,7 @@
 				E764341E1D6F111400890F6E /* TBViewController.m in Sources */,
 				E76434291D6F18AB00890F6E /* VenueCategory.m in Sources */,
 				E76434261D6F159100890F6E /* Location.m in Sources */,
+				E705A55E1D71CF4B00B6D8CB /* UIImage+Drawing.m in Sources */,
 				E76434231D6F12EA00890F6E /* Venue.m in Sources */,
 				E710061E1D6D7A1A00BFCC18 /* AppDelegate.m in Sources */,
 				E710061B1D6D7A1A00BFCC18 /* main.m in Sources */,

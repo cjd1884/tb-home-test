@@ -12,6 +12,7 @@
 #import "TBAPIManager.h"
 #import "TBVenueViewController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import "UIImage+Drawing.h"
 
 CGFloat kOffset = 14.0f;
 CGFloat kAnimationDuration = 0.2f;
@@ -81,13 +82,13 @@ NSString *kCandystoreCatergoryId = @"4bf58dd8d48988d117951735";
     [[TBAPIManager sharedManager] getVenuesWithLat:coordinates.latitude lon:coordinates.longitude andCategoryId:kCandystoreCatergoryId success:^(VenuesResponse *response) {
         NSArray *venues = response.venues;
         if (venues.count > 0) {
-            Venue *venue = venues[0];
-            if (venue.name != nil) {
-                NSLog(@"%@", venue.name);
-            }
-            // Populate shops on the map
+            // Empty venue array
             [self.venues removeAllObjects];
+            
+            // Populate venues on the map
             [self populateMapWithVenues:venues selected:nil];
+            
+            // Update array with newly fetched venues
             for (Venue *venue in venues) {
                 [self.venues addObject:venue];
             }
@@ -141,18 +142,21 @@ NSString *kCandystoreCatergoryId = @"4bf58dd8d48988d117951735";
 
 -(void)updateIconOfMarker:(GMSMarker*) marker withVenue:(Venue*)venue selected:(BOOL)isSelected {
     if (venue.categories.count > 0) {
+        // Deside base marker image depending selection
         UIImage *baseImage;
         if (isSelected) {
             baseImage = [UIImage imageNamed:@"ico-venue-selected"];
         } else {
             baseImage = [UIImage imageNamed:@"ico-venue"];
         }
+        // Get primary category
         VenueCategory *category = venue.categories[0];
+        
+        // Fetch category icon image from foursquare api and update marker
         UIImageView *imageView = [[UIImageView alloc] init];
         NSURLRequest *imageRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@64%@", category.prefix, category.suffix]]];
-        NSLog(@"%@", [NSString stringWithFormat:@"%@64%@", category.prefix, category.suffix]);
         [imageView setImageWithURLRequest:imageRequest placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
-            marker.icon = [TBViewController drawImage:image inImage:baseImage atPoint:CGPointMake(-1, -1)];
+            marker.icon = [UIImage drawImage:image inImage:baseImage atPoint:CGPointMake(-1, -1)];
             marker.map = self.mapView;
         } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
             
@@ -219,11 +223,11 @@ NSString *kCandystoreCatergoryId = @"4bf58dd8d48988d117951735";
     // Fetch venue details
     [[TBAPIManager sharedManager] getVenueWithId:marker.title success:^(VenueResponse *response) {
         Venue *venue = response.venue;
-        if (venue.name != nil) {
-            NSLog(@"Fetched venue with name: %@, rating: %lf", venue.name, venue.rating.floatValue);
-        }
-        // Deselect all markers except selected
+        
+        // Deselect all markers except selected (update map)
         [self populateMapWithVenues:self.venues selected:venue];
+        
+        // Select current venue
         [self selectMarkerWithVenue:venue];
         
     } failure:^(NSError *error) {
@@ -296,19 +300,6 @@ NSString *kCandystoreCatergoryId = @"4bf58dd8d48988d117951735";
         TBVenueViewController *vc = segue.destinationViewController;
         self.delegate = vc;
     }
-}
-
-+(UIImage*) drawImage:(UIImage*) fgImage
-              inImage:(UIImage*) bgImage
-              atPoint:(CGPoint)  point
-{
-    UIGraphicsBeginImageContextWithOptions(bgImage.size, FALSE, 0.0);
-    [bgImage drawInRect:CGRectMake( 0, 0, bgImage.size.width, bgImage.size.height)];
-    [fgImage drawInRect:CGRectMake( point.x, point.y, fgImage.size.width, fgImage.size.height)];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return newImage;
 }
 
 @end
