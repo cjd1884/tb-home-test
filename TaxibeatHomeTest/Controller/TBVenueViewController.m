@@ -9,6 +9,7 @@
 #import "TBVenueViewController.h"
 #import "VenueCategory.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import "TaxibeatHomeTest-Swift.h"
 
 @interface TBVenueViewController ()
 
@@ -27,12 +28,12 @@
     [super viewDidLoad];
     
     // Customize container view
-    self.containerView.layer.borderColor = [UIColor colorWithRed:210/255.0 green:203/255.0 blue:203/255.0 alpha:1.0].CGColor; // Gray with red
+    self.containerView.layer.borderColor = [TBGlobals sharedInstance].kTBColorGrayWithRed.CGColor;
     self.containerView.layer.borderWidth = 6.0;
     self.containerView.layer.cornerRadius = 8.0;
     
     // Customize rating label
-    self.ratingLabel.layer.borderColor = [UIColor colorWithRed:231/255.0 green:162/255.0 blue:146/255.0 alpha:1].CGColor; // Super Light Maroon
+    self.ratingLabel.layer.borderColor = [TBGlobals sharedInstance].kTBColorMaroonVeryLight.CGColor;
     self.ratingLabel.layer.borderWidth = 4.0;
     self.ratingLabel.layer.cornerRadius = self.ratingLabel.frame.size.width/2;
 }

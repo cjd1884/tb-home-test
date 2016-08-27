@@ -14,6 +14,7 @@
 		E705A54A1D7063C600B6D8CB /* TBVenueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E705A5491D7063C600B6D8CB /* TBVenueViewController.m */; };
 		E705A54D1D70CEDA00B6D8CB /* VenueResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E705A54C1D70CEDA00B6D8CB /* VenueResponse.m */; };
 		E705A5501D70E88800B6D8CB /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = E705A54F1D70E88800B6D8CB /* Photo.m */; };
+		E705A5521D717E7100B6D8CB /* TBGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = E705A5511D717E7100B6D8CB /* TBGlobals.swift */; };
 		E710061B1D6D7A1A00BFCC18 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E710061A1D6D7A1A00BFCC18 /* main.m */; };
 		E710061E1D6D7A1A00BFCC18 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E710061D1D6D7A1A00BFCC18 /* AppDelegate.m */; };
 		E71006241D6D7A1A00BFCC18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E71006221D6D7A1A00BFCC18 /* Main.storyboard */; };
@@ -51,6 +52,8 @@
 		E705A54C1D70CEDA00B6D8CB /* VenueResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueResponse.m; sourceTree = "<group>"; };
 		E705A54E1D70E88800B6D8CB /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
 		E705A54F1D70E88800B6D8CB /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		E705A5511D717E7100B6D8CB /* TBGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TBGlobals.swift; sourceTree = "<group>"; };
+		E705A5541D71811E00B6D8CB /* TaxibeatHomeTest-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TaxibeatHomeTest-Bridging-Header.h"; sourceTree = "<group>"; };
 		E71006161D6D7A1A00BFCC18 /* TaxibeatHomeTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaxibeatHomeTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E710061A1D6D7A1A00BFCC18 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E710061C1D6D7A1A00BFCC18 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -145,6 +148,7 @@
 			children = (
 				E710061C1D6D7A1A00BFCC18 /* AppDelegate.h */,
 				E710061D1D6D7A1A00BFCC18 /* AppDelegate.m */,
+				E705A5511D717E7100B6D8CB /* TBGlobals.swift */,
 				E71006221D6D7A1A00BFCC18 /* Main.storyboard */,
 				E71006271D6D7A1A00BFCC18 /* LaunchScreen.storyboard */,
 				E764341F1D6F118F00890F6E /* Model */,
@@ -154,6 +158,7 @@
 				E71006251D6D7A1A00BFCC18 /* Assets.xcassets */,
 				E710062A1D6D7A1A00BFCC18 /* Info.plist */,
 				E71006191D6D7A1A00BFCC18 /* Supporting Files */,
+				E705A5541D71811E00B6D8CB /* TaxibeatHomeTest-Bridging-Header.h */,
 			);
 			path = TaxibeatHomeTest;
 			sourceTree = "<group>";
@@ -375,6 +380,7 @@
 				E705A54A1D7063C600B6D8CB /* TBVenueViewController.m in Sources */,
 				E705A5411D6F2BC800B6D8CB /* TBSessionManager.m in Sources */,
 				E705A54D1D70CEDA00B6D8CB /* VenueResponse.m in Sources */,
+				E705A5521D717E7100B6D8CB /* TBGlobals.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +443,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -457,6 +465,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/TaxibeatHomeTest/SwiftBridging.h";
 			};
 			name = Debug;
 		};
@@ -481,6 +490,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -494,6 +505,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/TaxibeatHomeTest/SwiftBridging.h";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
