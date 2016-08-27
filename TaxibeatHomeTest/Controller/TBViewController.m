@@ -138,9 +138,16 @@ CGFloat kAnimationDuration = 0.2f;
     [self.view layoutIfNeeded];
     
     // Animate container view
-    [UIView animateWithDuration:kAnimationDuration animations:^{
-        self.containerTopConstraint.constant = kOffset;
-        [self.view layoutIfNeeded];
+    [UIView animateWithDuration:kAnimationDuration * 2
+                          delay:0.0f
+         usingSpringWithDamping:0.5f
+          initialSpringVelocity:0.0f
+                        options:UIViewAnimationOptionTransitionNone
+                     animations:^{
+                         self.containerTopConstraint.constant = kOffset;
+                         [self.view layoutIfNeeded];
+                     } completion:^(BOOL finished) {
+                         //
     }];
     
 }

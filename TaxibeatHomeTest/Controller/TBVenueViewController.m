@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -70,10 +71,20 @@
     [self.imageView setImage:nil];
     if (venue.bestPhoto != nil) {
         NSString *dimensionString = [NSString stringWithFormat:@"%ldx%ld", (unsigned long)(3 * self.imageView.frame.size.width), (unsigned long)(3 * self.imageView.frame.size.height)];
-        [self.imageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", venue.bestPhoto.prefix, dimensionString, venue.bestPhoto.suffix]]];
+        NSURLRequest *imageRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@", venue.bestPhoto.prefix, dimensionString, venue.bestPhoto.suffix]]];
+        [self.activityIndicator startAnimating];
+        [self.imageView setImageWithURLRequest:imageRequest placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
+            [self.activityIndicator stopAnimating];
+            [self.imageView setImage:image];
+        } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+            [self.activityIndicator stopAnimating];
+            [self.imageView setImage:[UIImage imageNamed:@"placeholder"]];
+            self.imageView.contentMode = UIViewContentModeCenter;
+        }];
         self.imageView.contentMode = UIViewContentModeScaleAspectFit;
         
     } else {
+        [self.activityIndicator stopAnimating];
         [self.imageView setImage:[UIImage imageNamed:@"placeholder"]];
         self.imageView.contentMode = UIViewContentModeCenter;
     }
